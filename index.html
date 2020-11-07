@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+   <head>
+            <title>Vending Machine</title>
+            
+			<!-- meta -->
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+            <!-- angularjs stuff -->
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js"></script>
+
+            <!-- Loading Spinner stuff -->
+            <link rel="stylesheet" href="app/css/loading_spinner_style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-animate.js"></script>
+            
+            <!-- app script  -->
+			<script src = "app/js/app.js"></script>
+			
+            
+            <!-- bootstrap -->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+            
+            <!-- custrom css -->
+            <link rel="stylesheet" href="app/css/card_container.css">
+            <link rel="stylesheet" href="app/css/console.css">
+
+
+			<!-- other bootstrap stuff -->
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+   </head>
+
+   <body>
+        <div ng-app = "mainApp" >
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <!-- <img src="app/assets/brand/calogo.png" width="30" height="30" alt=""> -->
+                    Vending Machine
+                </a>
+            </nav>
+                
+            <div ng-controller="VendingController" class="vendor_container">
+                <div class="vendor_content">
+                    <div class="row" ng-repeat = "productRow in products">
+                        <div class="col-sm" ng-repeat = "product in productRow">
+                            <div class="product_card">
+                                <div class="product_card__thumb"><span id="close-modal"><i class="ion ion-md-close"></i></span>
+                                <img src="https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg" alt="Strawberry Waffle" /></div>
+                                <div class="product_card__content">
+                                    <header class="content__header">
+                                        <div class="row-wrapper">
+                                            <h2 class="product-title"> {{product.name}} </h2>
+                                        </div>
+                                        <div class="product-details">
+                                            <div class="product-details-item time">
+                                                <i class="ion ion-ios-clock-outline"></i>
+                                                <div class="value">R {{product.price}}</div>
+                                                <div class="product-position">AA</div>
+                                            </div>
+                                        </div>
+                                    </header>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="vendor_sidebar">
+                    <div class = "vendor_console">Balance</div>
+                    <button class="vendor_coin" ng-repeat="denomination in coin_denominations"> {{denomination}}</button>
+                    <input type="email" class="form-control" id="emailAddress" placeholder="name@example.com" name="email" ng-model="email" required>
+                    
+                    <button class="change_button">Get Change</button>
+                </div>
+
+
+            </div>
+
+	    </div>
+		</body>
+</html>
