@@ -25,10 +25,12 @@
 
          <!-- bootstrap -->
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
          <!-- custrom css -->
          <link rel="stylesheet" href="css/card_container.css">
          <link rel="stylesheet" href="css/vendor_terminal.css">
+         <link rel="stylesheet" href="css/float-btn.css">
 
 
          <!-- other bootstrap stuff -->
@@ -88,8 +90,7 @@
                             <div class="row" ng-repeat = "productRow in products">
                                 <div class="col col-sm" ng-repeat = "product in productRow">
                                     <div class="product-card">
-                                        <div class="product-card__thumb"><h3>{{product.name}}</h3>
-                                        <img src= {{product.img}} /></div>
+                                        <div class="product-card__thumb"><img src= {{product.img}} /></div>
                                         <div class="product-card__content">
                                             <header class="content__header">
                                                 <div class="row-wrapper">
@@ -108,6 +109,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="#" class="float" ng-click="reloadProducts()"><i class="fa fa-refresh btn-float"></i></a>
                     </div>
                 </div>
             </div>

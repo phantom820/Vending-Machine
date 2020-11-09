@@ -38,7 +38,12 @@ mainApp.controller( "VendingController", function( $scope,dataService){
     
     }
 
+    $scope.reloadProducts = function(){
+        $scope.getProducts();
+    }
+
     $scope.getProducts();
+    
 
     // $scope.init_products(12);
     $scope.reset = function(){
