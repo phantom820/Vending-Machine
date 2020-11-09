@@ -41,7 +41,7 @@ module.exports = function(config) {
     reporters: ['progress','coverage'],
 
     coverageReporter: {
-      type : 'text',
+      type : 'lcov',
       dir : 'coverage/'
     },
 
