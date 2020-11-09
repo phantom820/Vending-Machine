@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start app/js/test/karma.conf.js "
+    "test": "karma start app/js/test/karma.conf.js ",
+    "codecov": "codecov"
   },
   "author": "",
   "license": "ISC",
