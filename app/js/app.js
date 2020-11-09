@@ -1,9 +1,8 @@
-var mainApp = angular.module("mainApp",['ngAnimate']);
+var mainApp = angular.module("mainApp",[]);
 
 mainApp.controller( "VendingController", function( $scope,dataService){
     $scope.products;
     $scope.products_sequential;
-    $scope.done = false;
     $scope.balance = 0;
     $scope.coin_denominations = [1, 2, 5, 10];
     $scope.product_available = true;
@@ -16,37 +15,16 @@ mainApp.controller( "VendingController", function( $scope,dataService){
         $scope.hideLoader = !$scope.hideLoader;
     };
 
-    $scope.insert_coin = (d)=>{
+    $scope.insert_coin = function(d){
         $scope.balance+=d;
     }
-
-    $scope.init_products = (n)=>{
-        var n_cols = 3;
-        var n_rows = n/n_cols;
-
-        $scope.test_products = [];
-        for(var i=0; i<n_rows; i++){
-            row = [];
-            for(var j=0; j<n_cols; j++){
-                row.push({
-                    name: "item"+(i*n_cols+j),
-                    price: j*10+".00",
-                    code: j*n_rows+i*n_cols+"A",
-                    count: 4*i,
-                    img:"app/stock_images/"+(i*n_cols+j)+".png"
-                });
-            }
-            $scope.test_products.push(row);
-        }
-    }
-
-    // $scope.init_products(12);
 
     // retrieve products
     $scope.getProducts = function() {
         $scope.toggle_spinner();
         dataService.getProducts().then(function onSuccess(response) {
             var results = response.data;
+            console.log(response)
             $scope.products_sequential = results;
             $scope.products = $scope.formatData(results);
             $scope.toggle_spinner();
@@ -62,6 +40,12 @@ mainApp.controller( "VendingController", function( $scope,dataService){
 
     $scope.getProducts();
 
+    // $scope.init_products(12);
+    $scope.reset = function(){
+        $scope.product_available = true;
+        $scope.sufficient_balance = true;
+    }
+
     // format retrieved data
     $scope.formatData = function(data) {
         formatted_data = []
@@ -72,7 +56,7 @@ mainApp.controller( "VendingController", function( $scope,dataService){
         for(var i=0;i<n_rows;i++){
             var row = [];
             for(var j=0;j<n_cols;++j){
-                data[i*n_cols+j].img = "app/stock_images/"+data[i*n_cols+j].name+".png";
+                data[i*n_cols+j].img = "stock_images/"+data[i*n_cols+j].name+".png";
                 row.push(data[i*n_cols+j]);
             }
             formatted_data.push(row);
@@ -129,7 +113,7 @@ mainApp.controller( "VendingController", function( $scope,dataService){
     //making a refund
     $scope.user_change;
     $scope.change_amount = 0;
-    $scope.set_initial_change = ()=> $scope.user_change = {1:0, 2:0, 5:0, 10:0};
+    $scope.set_initial_change = function(){ $scope.user_change = {1:0, 2:0, 5:0, 10:0};}
     $scope.set_initial_change();
     $scope.make_change = function(curr_coins, amount){
         max_denomination = $scope.coin_denominations.length-1;

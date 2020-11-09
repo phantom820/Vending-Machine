@@ -1,0 +1,26 @@
+{
+  "name": "vendor-machine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start app/js/test/karma.conf.js "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.8",
+    "jasmine": "^3.6.3",
+    "karma": "^5.2.3",
+    "karma-coverage": "^2.0.3",
+    "karma-jasmine": "^4.0.1",
+    "karma-junit-reporter": "^2.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16"
+  },
+  "dependencies": {
+    "angular-mocks": "^1.8.2",
+    "junit": "^1.4.9"
+  }
+}

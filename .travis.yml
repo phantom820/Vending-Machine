@@ -1,0 +1,18 @@
+language: node_js
+node_js:    
+  - "12"
+addons:
+  chrome: stable
+env:
+  global:
+    CODECOV_TOKEN="08d14ab9-da21-4590-910e-c86c0da4b436"    
+before_script:
+  - npm install 
+jobs:
+  include:
+    - stage: Test coverage
+      script:
+        - npm test 
+        - npm run codecov
+      after_success:
+         - bash <(curl -s https://codecov.io/bash)
