@@ -1,64 +1,67 @@
-mainApp.factory('dataFactory', function($http,Upload) {
+mainApp.factory('dataFactory', function($http) {
         var factory={};
 
-        factory.identityNumberExists = function(identityNumber) {
-
-					return $http({
-						method : "GET",
-							url : "http://0.0.0.0:5000/tenants?id="+identityNumber,
-							headers: {
-								"Content-Type": "application/json"
-							}
-					});
-				}
-
-        factory.getRooms = function(type) {
+        factory.getProducts = function() {
             return $http({
                 method : "GET",
-                    url : "http://0.0.0.0:5000/rooms?type="+type,
+                    url : "http://0.0.0.0:5000/products",
                     headers: {
                         "Content-Type": "application/json"
                     }
             });
         }
 
-        factory.bookRoom = function(bookingDetails){
+        factory.purchaseProduct = function(code) {
             return $http({
-                method: 'POST',
-                url: 'http://0.0.0.0:5000/tenants',
-                headers: {
-                  'Content-Type': "application/json"
-                },
-                data: bookingDetails
+                method : "PATCH",
+                    url : "http://0.0.0.0:5000/products/purchase",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {"code":code}
+            });
+        }
+        factory.getCoins = function() {
+            return $http({
+                method : "GET",
+                    url : "http://0.0.0.0:5000/coins",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
             });
         }
 
-        factory.uploadPop = function (file,identityNumber) {
-            return Upload.upload({
-                    url: 'http://0.0.0.0:5000/tenants/upload/pop?id='+identityNumber,
-                    data: {file: file}
+        factory.updateCoins = function(change){
+            return $http({
+                method : "PATCH",
+                    url : "http://0.0.0.0:5000/coins/update",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data : change
             });
-        };
+        }
 
+        
         return factory;
     });
 
 mainApp.service('dataService', function(dataFactory) {
 
-            this.identityNumberExists = function(identityNumber){
-                return dataFactory.identityNumberExists(identityNumber);
-            }
-
-            this.getRooms = function(type) {
-            return dataFactory.getRooms(type);
+        this.getProducts = function(){
+            return dataFactory.getProducts();
         }
 
-        this.bookRoom = function(bookingDetails){
-            return dataFactory.bookRoom(bookingDetails)
+        this.purchaseProduct = function(code) {
+            return dataFactory.purchaseProduct(code);
         }
 
-        this.uploadPop= function(file,identityNumber){
-            return dataFactory.uploadPop(file,identityNumber);
+        this.getCoins = function() {
+            return dataFactory.getCoins();
+        }
+
+        this.updateCoins = function(change){
+            return dataFactory.updateCoins(change)
         }
     });
 

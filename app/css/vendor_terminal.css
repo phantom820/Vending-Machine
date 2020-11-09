@@ -1,0 +1,42 @@
+body {
+	text-align: center;				/* This is a hack for older browsers to center the page */
+}
+
+#vendor-terminal {
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1607843137254902);
+  border-radius: 2px;
+  margin: 10px;
+}
+
+#vendor-terminal input {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	width: 40%;
+}
+
+.vendor-console {
+	background: #000;
+	margin: 0 auto;
+	border: 2px groove #ccc;
+	box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.1607843137254902);
+	border-radius: 3px;
+	display: block;
+	color: #ccc;
+	padding: 10px;
+	width: 70%;
+  	/* height: 70px; */
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+.coin-row h5 {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.coin-button {
+	background-color: #ccc;
+}
